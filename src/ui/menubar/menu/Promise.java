@@ -5,6 +5,7 @@ public class Promise<T> {
 
     public Promise() {
         method = value -> {};
+
     }
 
     public void resolve(Method<T> method) {
