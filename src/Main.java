@@ -8,6 +8,8 @@ import model.draw.taste.color.ColorRepository;
 import model.draw.taste.color.ColorSelection;
 import model.draw.taste.thickness.ThicknessRepository;
 import model.draw.taste.thickness.ThicknessSelection;
+import ui.button.Button;
+import ui.colorchooser.ColorChooser;
 import ui.combobox.ComboBox;
 import ui.frame.Frame;
 import ui.menubar.MenuBar;
@@ -71,11 +73,37 @@ public class Main {
         final var toolPromise = paintToolComboBox.promise();
         toolPromise.resolve(toolRepository::set);
 
+        final var customColorButton = new Button()
+                .title("Custom Color")
+                .size(100, 20)
+                ;
+
+        final var colorChooser = new ColorChooser()
+                .hidden()
+                ;
+
+        final var customColorPromise = customColorButton.promise();
+        customColorPromise.resolve(btn -> {
+            final var title = "Custom Color";
+            final var confirm = "OK";
+            if (btn.getText().equals(title)) {
+                btn.setText(confirm);
+                colorChooser.isVisible(true);
+                return;
+            }
+            btn.setText(title);
+            colorRepository.set(colorChooser.color());
+            colorChooser.isVisible(false);
+        });
+
+
+
+
         final var settingPanel = new Panel()
                 .position(0, 0)
                 .backgroundColor(Color.blue)
                 .size(500, 50)
-                .components(menuBar, paintToolComboBox)
+                .components(menuBar, paintToolComboBox, customColorButton)
                 ;
 
         final var paintPanel = new Panel()
@@ -88,6 +116,7 @@ public class Main {
                                 toolRepository
                         )
                 )
+                .components(colorChooser)
                 ;
 
 
