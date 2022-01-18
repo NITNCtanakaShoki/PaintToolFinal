@@ -29,7 +29,7 @@ public class MenuBar implements Composable {
         return new MenuBar(jMenuBar);
     }
 
-    public MenuBar menus(Composable[] menus) {
+    public MenuBar menus(Composable... menus) {
         final var jMenuBar = menubarClone();
         for (final var menu: menus) {
             jMenuBar.add(menu.asComponent());

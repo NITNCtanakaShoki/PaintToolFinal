@@ -31,9 +31,7 @@ public class Main {
         final var menuBar = new MenuBar()
                 .position(0, 0)
                 .size(100, 20)
-                .menus(new Menu[]{
-                        colorMenu
-                })
+                .menus(colorMenu)
                 ;
 
         final var paintPanel = new Panel()
