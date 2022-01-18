@@ -66,6 +66,10 @@ public class Panel implements Composable {
         return jPanel;
     }
 
+    public void visible(boolean isVisible) {
+        panel.setVisible(isVisible);
+    }
+
     @Override
     public Component asComponent() {
         return panel;

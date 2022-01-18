@@ -70,6 +70,13 @@ public class Main {
                 })
                 ;
 
+        final var eraseAllButton = new Button()
+                .title("全削除")
+                .size(50, 20)
+                ;
+
+
+
         final var toolPromise = paintToolComboBox.promise();
         toolPromise.resolve(toolRepository::set);
 
@@ -82,28 +89,12 @@ public class Main {
                 .hidden()
                 ;
 
-        final var customColorPromise = customColorButton.promise();
-        customColorPromise.resolve(btn -> {
-            final var title = "Custom Color";
-            final var confirm = "OK";
-            if (btn.getText().equals(title)) {
-                btn.setText(confirm);
-                colorChooser.isVisible(true);
-                return;
-            }
-            btn.setText(title);
-            colorRepository.set(colorChooser.color());
-            colorChooser.isVisible(false);
-        });
-
-
-
 
         final var settingPanel = new Panel()
                 .position(0, 0)
                 .backgroundColor(Color.blue)
                 .size(500, 50)
-                .components(menuBar, paintToolComboBox, customColorButton)
+                .components(menuBar, paintToolComboBox, customColorButton, eraseAllButton)
                 ;
 
         final var paintPanel = new Panel()
@@ -118,6 +109,26 @@ public class Main {
                 )
                 .components(colorChooser)
                 ;
+
+        final var eraseAllPromise = eraseAllButton.promise();
+        eraseAllPromise.resolve(btn -> {
+            paintPanel.visible(false);
+            paintPanel.visible(true);
+        });
+
+        final var customColorPromise = customColorButton.promise();
+        customColorPromise.resolve(btn -> {
+            final var title = "Custom Color";
+            final var confirm = "OK";
+            if (btn.getText().equals(title)) {
+                btn.setText(confirm);
+                colorChooser.isVisible(true);
+                return;
+            }
+            btn.setText(title);
+            colorRepository.set(colorChooser.color());
+            colorChooser.isVisible(false);
+        });
 
 
         final var frame = new Frame()
