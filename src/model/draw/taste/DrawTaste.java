@@ -24,10 +24,21 @@ public class DrawTaste implements Drawable {
         return graphics;
     }
     public void drawLine(DrawPosition start, DrawPosition end) {
-        graphics().drawLine(start.x(), start.y(), end.x(), end.y());
+        drawLine(graphics(), start, end);
     }
+
+    @Override
+    public void drawLine(DrawPosition start, DrawPosition end, Color color) {
+        final var graphics = graphics();
+        graphics.setColor(color);
+        drawLine(graphics, start, end);
+    }
+
     private void setColor(Graphics graphics) {
         graphics.setColor(colorable.color());
+    }
+    private void drawLine(Graphics graphics, DrawPosition start, DrawPosition end) {
+        graphics.drawLine(start.x(), start.y(), end.x(), end.y());
     }
     private void setThickness(Graphics graphics) {
         final var graphics2D = (Graphics2D)graphics;

@@ -2,6 +2,7 @@ import model.draw.DrawControllerBuilder;
 import model.draw.DrawMouseMentionable;
 import model.draw.mouse.ToolRepository;
 import model.draw.mouse.ToolSelection;
+import model.draw.mouse.tools.EraiserPen;
 import model.draw.mouse.tools.NormalPen;
 import model.draw.mouse.tools.StraightLinePen;
 import model.draw.mouse.tools.TrianglePen;
@@ -64,7 +65,8 @@ public class Main {
                 .items(new ToolSelection[]{
                         new ToolSelection("ノーマル", new NormalPen()),
                         new ToolSelection("直線", new StraightLinePen()),
-                        new ToolSelection("三角形", new TrianglePen())
+                        new ToolSelection("三角形", new TrianglePen()),
+                        new ToolSelection("消しゴム", new EraiserPen())
                 })
                 ;
 
