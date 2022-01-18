@@ -28,6 +28,29 @@ public class DrawTaste implements Drawable {
     }
 
     @Override
+    public void drawPanda(DrawPosition position) {
+        final var graphics = graphics();
+
+        // 外枠
+        graphics.setColor(Color.BLACK);
+        graphics.fillOval(position.x() - 50, position.y() - 50, 100, 100);
+
+        // 中白
+        graphics.setColor(Color.WHITE);
+        graphics.fillOval(position.x() - 46, position.y() - 46, 92, 92);
+
+        graphics.setColor(Color.BLACK);
+
+        // 目
+        graphics.fillOval(position.x() - 25, position.y() - 21, 20, 20);
+        graphics.fillOval(position.x() + 10, position.y() - 21, 20, 20);
+
+        // 耳
+        graphics.fillOval(position.x() - 70, position.y() - 50, 40, 40);
+        graphics.fillOval(position.x() + 35, position.y() - 50, 40, 40);
+    }
+
+    @Override
     public void drawLine(DrawPosition start, DrawPosition end, Color color) {
         final var graphics = graphics();
         graphics.setColor(color);

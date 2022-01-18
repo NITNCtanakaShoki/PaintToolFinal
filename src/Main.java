@@ -66,7 +66,8 @@ public class Main {
                         new ToolSelection("直線", new StraightLinePen()),
                         new ToolSelection("三角形", new TrianglePen()),
                         new ToolSelection("消しゴム", new EraiserPen()),
-                        new ToolSelection("虹色ペン", new RainbowPen())
+                        new ToolSelection("虹色ペン", new RainbowPen()),
+                        new ToolSelection("パンダスタンプ", new PandaStamp())
                 })
                 ;
 
