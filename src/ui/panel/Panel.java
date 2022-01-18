@@ -38,6 +38,14 @@ public class Panel implements Composable {
         return new Panel(jPanel, mouseInputListenerBuilders);
     }
 
+    public Panel components(Composable... composables) {
+        final var jPanel = panelClone();
+        for (final var component: composables) {
+            jPanel.add(component.asComponent());
+        }
+        return new Panel(jPanel, mouseInputListenerBuilders);
+    }
+
     public Panel mouseInputListeners(MouseInputListenerBuilder... builders) {
         final var jPanel = panelClone();
         for (final var builder: builders) {

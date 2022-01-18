@@ -4,6 +4,9 @@ import model.draw.position.DrawPosition;
 import model.draw.taste.Drawable;
 
 public interface DrawMouseMentionable {
+
+    void init();
+
     void mouseClicked(Drawable drawable, DrawPosition position);
 
     void mousePressed(Drawable drawable, DrawPosition position);

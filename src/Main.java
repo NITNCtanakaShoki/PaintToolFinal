@@ -1,10 +1,15 @@
 import model.draw.DrawControllerBuilder;
-import model.draw.mouse.NormalPen;
+import model.draw.DrawMouseMentionable;
+import model.draw.mouse.ToolRepository;
+import model.draw.mouse.ToolSelection;
+import model.draw.mouse.tools.NormalPen;
+import model.draw.mouse.tools.StraightLinePen;
 import model.draw.taste.DrawTasteBuilder;
 import model.draw.taste.color.ColorRepository;
 import model.draw.taste.color.ColorSelection;
 import model.draw.taste.thickness.ThicknessRepository;
 import model.draw.taste.thickness.ThicknessSelection;
+import ui.combobox.ComboBox;
 import ui.frame.Frame;
 import ui.menubar.MenuBar;
 import ui.menubar.menu.Menu;
@@ -16,8 +21,11 @@ public class Main {
 
     public static void main(String[] args) {
 
+        /* 状態保存ストア */
         final var colorRepository = new ColorRepository();
         final var thicknessRepository = new ThicknessRepository();
+        final var toolRepository = new ToolRepository(new NormalPen());
+        /*              */
 
         final var colorMenu = new Menu<Color>()
                 .title("色")
@@ -40,24 +48,42 @@ public class Main {
                 })
                 ;
 
+
         final var thicknessPromise = thicknessMenu.promise();
         thicknessPromise.resolve(thicknessRepository::set);
 
 
         final var menuBar = new MenuBar()
                 .position(0, 0)
-                .size(100, 20)
+                .size(100, 50)
                 .menus(colorMenu, thicknessMenu)
                 ;
 
+        final var paintToolComboBox = new ComboBox<DrawMouseMentionable>()
+                .items(new ToolSelection[]{
+                        new ToolSelection("ノーマル", new NormalPen()),
+                        new ToolSelection("直線", new StraightLinePen())
+                })
+                ;
+
+        final var toolPromise = paintToolComboBox.promise();
+        toolPromise.resolve(toolRepository::set);
+
+        final var settingPanel = new Panel()
+                .position(0, 0)
+                .backgroundColor(Color.blue)
+                .size(500, 50)
+                .components(menuBar, paintToolComboBox)
+                ;
+
         final var paintPanel = new Panel()
-                .position(0, 20)
+                .position(0, 50)
                 .backgroundColor(Color.WHITE)
-                .size(500, 480)
+                .size(500, 450)
                 .mouseInputListeners(
                         new DrawControllerBuilder(
                                 new DrawTasteBuilder(colorRepository, thicknessRepository),
-                                new NormalPen()
+                                toolRepository
                         )
                 )
                 ;
@@ -66,7 +92,7 @@ public class Main {
         final var frame = new Frame()
                 .title("お絵描き")
                 .size(500, 500)
-                .components(paintPanel, menuBar)
+                .components(paintPanel, settingPanel)
                 ;
 
         frame.view();

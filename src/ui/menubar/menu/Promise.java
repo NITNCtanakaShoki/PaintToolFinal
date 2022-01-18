@@ -12,7 +12,7 @@ public class Promise<T> {
         this.method = method;
     }
 
-    void action(T value) {
+    public void action(T value) {
         method.run(value);
     }
 
