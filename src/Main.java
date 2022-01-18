@@ -4,6 +4,7 @@ import model.draw.mouse.ToolRepository;
 import model.draw.mouse.ToolSelection;
 import model.draw.mouse.tools.NormalPen;
 import model.draw.mouse.tools.StraightLinePen;
+import model.draw.mouse.tools.TrianglePen;
 import model.draw.taste.DrawTasteBuilder;
 import model.draw.taste.color.ColorRepository;
 import model.draw.taste.color.ColorSelection;
@@ -62,7 +63,8 @@ public class Main {
         final var paintToolComboBox = new ComboBox<DrawMouseMentionable>()
                 .items(new ToolSelection[]{
                         new ToolSelection("ノーマル", new NormalPen()),
-                        new ToolSelection("直線", new StraightLinePen())
+                        new ToolSelection("直線", new StraightLinePen()),
+                        new ToolSelection("三角形", new TrianglePen())
                 })
                 ;
 
