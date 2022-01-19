@@ -128,6 +128,7 @@ public class Main {
             }
             btn.setText(title);
             colorRepository.set(colorChooser.color());
+            toolRepository.set(new NormalPen());
             colorChooser.isVisible(false);
         });
 
