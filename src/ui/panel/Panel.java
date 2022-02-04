@@ -66,6 +66,9 @@ public class Panel implements Composable {
         return jPanel;
     }
 
+    public void removeAllComponents() {
+        panel.removeAll();
+    }
     public void initializeBy(Color color) {
         panel.setBackground(color);
     }

@@ -3,6 +3,7 @@ package model.draw.taste;
 import model.draw.position.DrawPosition;
 import model.draw.taste.thickness.Thicknessable;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class DrawTaste implements Drawable {
@@ -25,6 +26,14 @@ public class DrawTaste implements Drawable {
     }
     public void drawLine(DrawPosition start, DrawPosition end) {
         drawLine(graphics(), start, end);
+    }
+
+    public void input(DrawPosition position) {
+        final var textField = new JTextField();
+        final var container = (Container) this.component;
+        textField.setBounds(position.x(), position.y(), 100, 20);
+        textField.setBackground(new Color(0, 0, 0, 0));
+        container.add(textField);
     }
 
     @Override

@@ -70,7 +70,8 @@ public class Main {
                         new ToolSelection("三角形", new TrianglePen()),
                         new ToolSelection("消しゴム", new EraiserPen()),
                         new ToolSelection("虹色ペン", new RainbowPen()),
-                        new ToolSelection("パンダスタンプ", new PandaStamp())
+                        new ToolSelection("パンダスタンプ", new PandaStamp()),
+                        new ToolSelection("入力", new KeyInput())
                 })
                 ;
 
@@ -118,6 +119,7 @@ public class Main {
         eraseAllPromise.resolve(btn -> {
             paintPanel.visible(false);
             paintPanel.visible(true);
+            paintPanel.removeAllComponents();
             paintPanel.initializeBy(colorRepository.color());
         });
 
