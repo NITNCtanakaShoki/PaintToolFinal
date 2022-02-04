@@ -67,7 +67,9 @@ public class Panel implements Composable {
     }
 
     public void removeAllComponents() {
-        panel.removeAll();
+        while (panel.getComponentCount() > 1) {
+            panel.remove(panel.getComponentCount()-1);
+        }
     }
     public void initializeBy(Color color) {
         panel.setBackground(color);
