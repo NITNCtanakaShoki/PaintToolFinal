@@ -31,6 +31,9 @@ public class Main {
         final var colorMenu = new Menu<Color>()
                 .title("色")
                 .selections(new ColorSelection[]{
+                        new ColorSelection("白", Color.WHITE),
+                        new ColorSelection("黄", Color.YELLOW),
+                        new ColorSelection("緑", Color.GREEN),
                         new ColorSelection("赤", Color.RED),
                         new ColorSelection("青", Color.BLUE),
                         new ColorSelection("黒", Color.BLACK)
@@ -115,6 +118,7 @@ public class Main {
         eraseAllPromise.resolve(btn -> {
             paintPanel.visible(false);
             paintPanel.visible(true);
+            paintPanel.initializeBy(colorRepository.color());
         });
 
         final var customColorPromise = customColorButton.promise();

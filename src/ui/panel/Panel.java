@@ -66,6 +66,10 @@ public class Panel implements Composable {
         return jPanel;
     }
 
+    public void initializeBy(Color color) {
+        panel.setBackground(color);
+    }
+
     public void visible(boolean isVisible) {
         panel.setVisible(isVisible);
     }
